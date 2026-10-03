@@ -8,9 +8,21 @@ version = "0.1.0"
 description = "A lightweight package for respiratory data processing, analysis, and monitoring workflows"
 readme = "README.md"
 requires-python = ">=3.10"
-authors = [{ name = "r6j8zg62yd-boop" }]
+authors = [{ name = "r6j8zg62yd-boop", email = "r6j8zg62yd@privaterelay.appleid.com" }]
 license = { text = "Apache-2.0" }
-keywords = ["respiratory", "health", "signal-processing", "monitoring"]
+keywords = ["respiratory", "health", "signal-processing", "monitoring", "wearable", "biomedical"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Healthcare Industry",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+    "Topic :: Scientific/Engineering :: Medical Science Apps",
+]
 dependencies = [
     "numpy>=1.24.0",
 ]
@@ -18,10 +30,52 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
     "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
 ]
+docs = [
+    "sphinx>=5.0.0",
+    "sphinx-rtd-theme>=1.2.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/r6j8zg62yd-boop/respiratory-package"
+Documentation = "https://github.com/r6j8zg62yd-boop/respiratory-package/tree/main/docs"
+Repository = "https://github.com/r6j8zg62yd-boop/respiratory-package.git"
+Issues = "https://github.com/r6j8zg62yd-boop/respiratory-package/issues"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+addopts = "-v --cov=respiratory_package --cov-report=term-missing"
+markers = [
+    "unit: Unit tests for individual functions",
+    "integration: Integration tests across modules",
+]
 
 [tool.setuptools]
-packages = ["respiratory_package", "respiratory_package.signal", "respiratory_package.analysis", "respiratory_package.monitoring"]
+packages = [
+    "respiratory_package",
+    "respiratory_package.signal",
+    "respiratory_package.analysis",
+    "respiratory_package.monitoring",
+]
+
+[tool.setuptools.package-data]
+respiratory_package = ["py.typed"]
+
+[tool.black]
+line-length = 100
+target-version = ["py310", "py311", "py312"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+select = ["E", "F", "W", "I"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
