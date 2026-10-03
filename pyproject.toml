@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "respiratory-package"
+version = "0.1.0"
+description = "A lightweight package for respiratory data processing, analysis, and monitoring workflows"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "r6j8zg62yd-boop" }]
+license = { text = "Apache-2.0" }
+keywords = ["respiratory", "health", "signal-processing", "monitoring"]
+dependencies = [
+    "numpy>=1.24.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.setuptools]
+packages = ["respiratory_package", "respiratory_package.signal", "respiratory_package.analysis", "respiratory_package.monitoring"]
